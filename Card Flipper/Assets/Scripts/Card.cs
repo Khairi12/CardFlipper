@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
 
+    public enum CardType {Common, Uncommon, Rare, Epic, Legendary};
+    public CardType cardType;
+
     private Image image;
     private bool hovering = false;
     private bool selected = false;
@@ -34,6 +37,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     private void FlipCard() {
+        Destroy(transform.GetChild(1).GetComponent<Image>());
         image.color = Color.blue;
         selected = true;
     }
