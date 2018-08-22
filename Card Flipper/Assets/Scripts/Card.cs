@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -8,11 +9,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public CardType cardType;
 
     private Image image;
+    private Color defaultColor;
     private bool hovering = false;
     private bool selected = false;
 
     private void Start() {
         image = GetComponent<Image>();
+        defaultColor = image.color;
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
@@ -24,22 +27,50 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void OnPointerClick(PointerEventData eventData) {
+        image.color = Color.white;
         FlipCard();
     }
 
     private void HighLightCard() {
         if (hovering) {
-            image.color = Color.red;
+            image.color = Color.white;
         }
         else {
-            image.color = Color.white;
+            image.color = defaultColor;
         }
     }
 
+    private IEnumerator PlayCardAnimation() {
+        image.color = new Color(
+            image.color.r,
+            image.color.g,
+            image.color.b,
+            1f);
+
+        while (image.color.a > 0.2f)
+        {
+            image.color = new Color(
+                image.color.r,
+                image.color.g,
+                image.color.b,
+                image.color.a - 0.1f);
+
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        yield return null;
+    }
+
     private void FlipCard() {
-        Destroy(transform.GetChild(1).GetComponent<Image>());
-        image.color = Color.blue;
-        selected = true;
+        if (CardManager.cardDraws > 0) {
+            Destroy(transform.GetChild(1).gameObject);
+            StartCoroutine(PlayCardAnimation());
+            selected = true;
+        }
+        else {
+
+        }
+
     }
     
     private void Update () {

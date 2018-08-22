@@ -4,6 +4,7 @@ using UnityEngine;
 public class CardManager : MonoBehaviour {
 
     public int cardAmount;
+    public static int cardDraws;
 
     private GameObject commonCard;
     private GameObject uncommonCard;
@@ -19,6 +20,7 @@ public class CardManager : MonoBehaviour {
         rareCard = Resources.Load("RareCard") as GameObject;
         epicCard = Resources.Load("EpicCard") as GameObject;
         legendaryCard = Resources.Load("LegendaryCard") as GameObject;
+        cardDraws = 3;
 
         CreateCards();
     }
