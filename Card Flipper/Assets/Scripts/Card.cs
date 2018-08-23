@@ -11,8 +11,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private CardManager cm;
     private DrawManager dm;
     private RewardManager rm;
+    private InventoryManager im;
     private Image image;
     private Color defaultColor;
+
     private bool hovering = false;
     private bool selected = false;
 
@@ -20,6 +22,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         cm = CardManager.cm;
         dm = DrawManager.dm;
         rm = RewardManager.rm;
+        im = InventoryManager.im;
         image = GetComponent<Image>();
         defaultColor = image.color;
     }
@@ -88,6 +91,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             
             rm.RemoveCard(cardType);
             dm.RemoveDrawCount();
+            im.AddCard(cardType);
         }
 
     }

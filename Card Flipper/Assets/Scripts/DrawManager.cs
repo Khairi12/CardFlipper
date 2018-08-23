@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class DrawManager : MonoBehaviour {
     public static DrawManager dm;
     public int drawCount;
-
-    private CardManager cm;
+    
     private Text drawCountText;
     
     private void Awake() {
@@ -13,7 +12,6 @@ public class DrawManager : MonoBehaviour {
     }
 
     private void Start () {
-        cm = CardManager.cm;
         drawCount = 3;
         drawCountText = transform.GetChild(1).GetComponent<Text>();
         UpdateDisplay();
@@ -31,7 +29,6 @@ public class DrawManager : MonoBehaviour {
 
     public void UpdateDisplay() {
         drawCountText.text = drawCount + "x";
-        Debug.Log("updated");
     }
 	
 }

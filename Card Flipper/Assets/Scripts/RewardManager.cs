@@ -9,8 +9,7 @@ public class RewardManager : MonoBehaviour {
     public int rareCount = 0;
     public int epicCount = 0;
     public int legendaryCount = 0;
-
-    private CardManager cm;
+    
     private Text commonText;
     private Text uncommonText;
     private Text rareText;
@@ -22,8 +21,6 @@ public class RewardManager : MonoBehaviour {
     }
 
     private void Start() {
-        cm = CardManager.cm;
-
         commonCount = 0;
         uncommonCount = 0;
         rareCount = 0;
