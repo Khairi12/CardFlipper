@@ -36,6 +36,9 @@ public class CardManager : MonoBehaviour {
         rareCount = 0;
         epicCount = 0;
         legendaryCount = 0;
+
+        CreateCards();
+        CountCards();
     }
 
     private GameObject SelectCardType() {
