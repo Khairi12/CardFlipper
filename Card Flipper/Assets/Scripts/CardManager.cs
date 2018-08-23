@@ -50,7 +50,7 @@ public class CardManager : MonoBehaviour {
         }
     }
 
-    private void CreateCards() {
+    public void CreateCards() {
         for (int i = 0; i < cardAmount; i++) {
             GameObject card = SelectCardType();
             cards.Add(card);
@@ -58,10 +58,18 @@ public class CardManager : MonoBehaviour {
         }
     }
 
-    private void CountCards() {
+    public void CountCards() {
         foreach (GameObject card in cards) {
             rm.AddCard(card.GetComponent<Card>().cardType);
         }
+    }
+
+    public void Clear() {
+        foreach (Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+
+        cards.Clear();
     }
 
 }

@@ -30,5 +30,10 @@ public class DrawManager : MonoBehaviour {
     public void UpdateDisplay() {
         drawCountText.text = drawCount + "x";
     }
+
+    public void Clear() {
+        drawCount = 3;
+        UpdateDisplay();
+    }
 	
 }

@@ -94,4 +94,13 @@ public class RewardManager : MonoBehaviour {
         legendaryText.text = legendaryCount + "x";
     }
 
+    public void Clear() {
+        commonCount = 0;
+        uncommonCount = 0;
+        rareCount = 0;
+        epicCount = 0;
+        legendaryCount = 0;
+
+        UpdateDisplay();
+    }
 }

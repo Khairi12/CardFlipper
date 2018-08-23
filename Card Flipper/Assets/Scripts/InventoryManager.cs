@@ -68,4 +68,13 @@ public class InventoryManager : MonoBehaviour {
         epicOwnedText.text = epicOwned + "x";
         legendaryOwnedText.text = legendaryOwned + "x";
     }
+
+    public void Clear() {
+        commonOwned = 0;
+        uncommonOwned = 0;
+        rareOwned = 0;
+        epicOwned = 0;
+        legendaryOwned = 0;
+        UpdateDisplay();
+    }
 }
