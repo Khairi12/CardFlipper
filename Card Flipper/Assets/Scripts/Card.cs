@@ -6,15 +6,16 @@ using UnityEngine.EventSystems;
 public enum CardType { Common, Uncommon, Rare, Epic, Legendary };
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
-    
     public CardType cardType;
 
+    private CardManager cm;
     private Image image;
     private Color defaultColor;
     private bool hovering = false;
     private bool selected = false;
 
     private void Start() {
+        cm = CardManager.cm;
         image = GetComponent<Image>();
         defaultColor = image.color;
     }
@@ -66,15 +67,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     private void FlipCard() {
-        if (CardManager.cardDraws > 0) {
-            selected = true;
-            Destroy(transform.GetChild(1).gameObject);
-            StartCoroutine(PlayCardAnimation());
-        }
-        else {
-
-        }
-
+        selected = true;
+        Destroy(transform.GetChild(1).gameObject);
+        StartCoroutine(PlayCardAnimation());
+        cm.RemoveCard(cardType);
     }
     
     private void Update () {

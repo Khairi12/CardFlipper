@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     private OptionManager om;
     private InventoryManager im;
 
-	private void Start () {
+    private void Start () {
+
 	}
 
 }

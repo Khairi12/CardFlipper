@@ -536,6 +536,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardAmount: 18
+  commonCount: 0
+  uncommonCount: 0
+  rareCount: 0
+  epicCount: 0
+  legendaryCount: 0
 --- !u!114 &356512929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,6 +1508,7 @@ GameObject:
   - component: {fileID: 936618607}
   - component: {fileID: 936618606}
   - component: {fileID: 936618605}
+  - component: {fileID: 936618609}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1592,6 +1598,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &936618609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 936618604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59332c7247346cf4a9b5aa10d4cd7fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &940417032
 GameObject:
   m_ObjectHideFlags: 0
