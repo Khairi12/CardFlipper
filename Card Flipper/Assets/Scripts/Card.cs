@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
+public enum CardType { Common, Uncommon, Rare, Epic, Legendary };
 
-    public enum CardType {Common, Uncommon, Rare, Epic, Legendary};
+public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
+    
     public CardType cardType;
 
     private Image image;
@@ -27,6 +28,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void OnPointerClick(PointerEventData eventData) {
+        if (selected)
+            return;
+
         image.color = Color.white;
         FlipCard();
     }
@@ -47,7 +51,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             image.color.b,
             1f);
 
-        while (image.color.a > 0.2f)
+        while (image.color.a > defaultColor.a)
         {
             image.color = new Color(
                 image.color.r,
@@ -63,9 +67,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     private void FlipCard() {
         if (CardManager.cardDraws > 0) {
+            selected = true;
             Destroy(transform.GetChild(1).gameObject);
             StartCoroutine(PlayCardAnimation());
-            selected = true;
         }
         else {
 
