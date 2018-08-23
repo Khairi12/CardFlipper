@@ -9,6 +9,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public CardType cardType;
 
     private CardManager cm;
+    private DrawManager dm;
+    private RewardManager rm;
     private Image image;
     private Color defaultColor;
     private bool hovering = false;
@@ -16,6 +18,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     private void Start() {
         cm = CardManager.cm;
+        dm = DrawManager.dm;
+        rm = RewardManager.rm;
         image = GetComponent<Image>();
         defaultColor = image.color;
     }
@@ -29,14 +33,23 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        if (selected)
+        if (selected) {
+            // prompt message you already pick this card
             return;
+        }
+        else if (dm.drawCount == 0) {
+            // prompt message no card draw remain
+            return;
+        }
 
         image.color = Color.white;
         FlipCard();
     }
 
     private void HighLightCard() {
+        if (dm.drawCount == 0)
+            return;
+
         if (hovering) {
             image.color = Color.white;
         }
@@ -67,10 +80,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     private void FlipCard() {
-        selected = true;
-        Destroy(transform.GetChild(1).gameObject);
-        StartCoroutine(PlayCardAnimation());
-        cm.RemoveCard(cardType);
+        if (dm.drawCount > 0)
+        {
+            selected = true;
+            Destroy(transform.GetChild(1).gameObject);
+            StartCoroutine(PlayCardAnimation());
+            
+            rm.RemoveCard(cardType);
+            dm.RemoveDrawCount();
+        }
+
     }
     
     private void Update () {

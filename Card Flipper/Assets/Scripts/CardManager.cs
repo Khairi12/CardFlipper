@@ -4,11 +4,6 @@ using UnityEngine;
 public class CardManager : MonoBehaviour {
     public static CardManager cm;
     public int cardAmount;
-    public int commonCount = 0;
-    public int uncommonCount = 0;
-    public int rareCount = 0;
-    public int epicCount = 0;
-    public int legendaryCount = 0;
 
     private List<GameObject> cards = new List<GameObject>();
     private RewardManager rm;
@@ -30,12 +25,6 @@ public class CardManager : MonoBehaviour {
         rareCard = Resources.Load("RareCard") as GameObject;
         epicCard = Resources.Load("EpicCard") as GameObject;
         legendaryCard = Resources.Load("LegendaryCard") as GameObject;
-
-        commonCount = 0;
-        uncommonCount = 0;
-        rareCount = 0;
-        epicCount = 0;
-        legendaryCount = 0;
 
         CreateCards();
         CountCards();
@@ -71,49 +60,8 @@ public class CardManager : MonoBehaviour {
 
     private void CountCards() {
         foreach (GameObject card in cards) {
-            switch (card.GetComponent<Card>().cardType) {
-                case CardType.Common:
-                    commonCount += 1;
-                    break;
-                case CardType.Uncommon:
-                    uncommonCount += 1;
-                    break;
-                case CardType.Rare:
-                    rareCount += 1;
-                    break;
-                case CardType.Epic:
-                    epicCount += 1;
-                    break;
-                case CardType.Legendary:
-                    legendaryCount += 1;
-                    break;
-                default:
-                    break;
-            }
+            rm.AddCard(card.GetComponent<Card>().cardType);
         }
     }
 
-    public void RemoveCard(CardType ct) {
-        switch (ct) {
-            case CardType.Common:
-                commonCount -= 1;
-                break;
-            case CardType.Uncommon:
-                uncommonCount -= 1;
-                break;
-            case CardType.Rare:
-                rareCount -= 1;
-                break;
-            case CardType.Epic:
-                epicCount -= 1;
-                break;
-            case CardType.Legendary:
-                legendaryCount -= 1;
-                break;
-            default:
-                break;
-        }
-
-        rm.UpdateDisplay();
-    }
 }

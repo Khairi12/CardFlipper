@@ -1,16 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class DrawManager : MonoBehaviour {
+    public static DrawManager dm;
+    public int drawCount;
 
-	// Use this for initialization
-	void Start () {
-		
+    private CardManager cm;
+    private Text drawCountText;
+    
+    private void Awake() {
+        dm = this;
+    }
+
+    private void Start () {
+        cm = CardManager.cm;
+        drawCount = 3;
+        drawCountText = transform.GetChild(1).GetComponent<Text>();
+        UpdateDisplay();
 	}
+
+    public void RemoveDrawCount() {
+        drawCount -= 1;
+        UpdateDisplay();
+    }
+
+    public void AddDrawCount() {
+        drawCount += 1;
+        UpdateDisplay();
+    }
+
+    public void UpdateDisplay() {
+        drawCountText.text = drawCount + "x";
+        Debug.Log("updated");
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
