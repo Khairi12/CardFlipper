@@ -37,8 +37,7 @@ public class RewardManager : MonoBehaviour {
     }
 
     public void AddCard(CardType ct) {
-        switch (ct)
-        {
+        switch (ct) {
             case CardType.Common:
                 commonCount += 1;
                 break;
@@ -62,8 +61,7 @@ public class RewardManager : MonoBehaviour {
     }
 
     public void RemoveCard(CardType ct) {
-        switch (ct)
-        {
+        switch (ct) {
             case CardType.Common:
                 commonCount -= 1;
                 break;

@@ -12,11 +12,11 @@ public class CardManager : MonoBehaviour {
     private GameObject rareCard;
     private GameObject epicCard;
     private GameObject legendaryCard;
-
+    
     private void Awake() {
         cm = this;
     }
-
+    
     private void Start() {
         rm = RewardManager.rm;
 

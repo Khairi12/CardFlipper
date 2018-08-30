@@ -68,8 +68,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             image.color.b,
             1f);
 
-        while (image.color.a > defaultColor.a)
-        {
+        while (image.color.a > defaultColor.a) {
             image.color = new Color(
                 image.color.r,
                 image.color.g,
@@ -83,8 +82,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     private void FlipCard() {
-        if (dm.drawCount > 0)
-        {
+        if (dm.drawCount > 0) {
             selected = true;
             Destroy(transform.GetChild(1).gameObject);
             StartCoroutine(PlayCardAnimation());
