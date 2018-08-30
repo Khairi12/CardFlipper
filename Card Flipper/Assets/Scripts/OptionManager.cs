@@ -10,13 +10,17 @@ public class OptionManager : MonoBehaviour {
 
     private Button resetButton;
 
+    // Built-in Unity method called when the game first initializes, called before Start()
     private void Start() {
         rm = RewardManager.rm;
         cm = CardManager.cm;
         dm = DrawManager.dm;
         im = InventoryManager.im;
 
+        // creates a reference to the Button component attached to the child of this gameobject
         resetButton = transform.GetChild(0).GetComponent<Button>();
+
+        // sets the listener of the button to ResetButtonClick();
         resetButton.onClick.AddListener(ResetButtonClick);
     }
 
@@ -27,6 +31,6 @@ public class OptionManager : MonoBehaviour {
         cm.Clear();
 
         cm.CreateCards();
-        cm.CountCards();
+        rm.CountCards();
     }
 }
